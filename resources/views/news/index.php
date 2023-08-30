@@ -1,3 +1,7 @@
+<?php
+/** @var array $news */
+?>
+
 <?php foreach ($news as $n): ?>
 <div style="border:1px solid green; margin: 12px; padding: 6px">
     <h2><?=$n['title']?></h2>
