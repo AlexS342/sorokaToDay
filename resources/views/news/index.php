@@ -5,6 +5,7 @@
 <?php foreach ($news as $n): ?>
 <div style="border:1px solid green; margin: 12px; padding: 6px">
     <h2><?=$n['title']?></h2>
+    <p><?=$n['category']?></p>
     <p><?=$n['description']?></p>
     <div style="margin: 6px">
         <strong><?=$n['author']?> <?=$n['created_at']?></strong>
