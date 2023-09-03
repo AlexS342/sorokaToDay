@@ -88,14 +88,13 @@
         <div class="container d-flex flex-wrap">
             <ul class="nav me-auto">
                 <li><a href="/" class="nav-link px-2">Главная</a></li>
-                <li><a href="categoryNews" class="nav-link px-2">Новости</a></li>
-                <li><a href="#" class="nav-link px-2 disabled">Предложить</a></li>
-                <li><a href="about" class="nav-link px-2">О нас</a></li>
+                <li><a href="/categoryNews" class="nav-link px-2">Новости</a></li>
+                <li><a href="/about" class="nav-link px-2">О нас</a></li>
                 <li><a href="#" class="nav-link px-2 disabled">admin</a></li>
             </ul>
             <ul class="nav">
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2 disabled">Login</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2 disabled">Sign up</a></li>
+                <li class="nav-item"><a href="/login" class="nav-link link-body-emphasis px-2">Login</a></li>
+                <li class="nav-item"><a href="/checkin" class="nav-link link-body-emphasis px-2">Sign up</a></li>
             </ul>
         </div>
     </nav>
@@ -119,34 +118,29 @@
         <div class="px-4 py-2 my-2 text-center">
             <div class="row py-lg-5">
                 <div class="col-sm-10 col-md-8 pb-3 mx-auto">
-                    <img class="img-fluid" src="img/osminog3.jpg" alt="осминог">
-                    <h1 class="display-4 fw-bold lh-1 text-body-emphasis mt-5 mb-5">
-                        Зоолог рассказала, что умственные способности осьминогов сродни инопланетным
-                    </h1>
-                    <p class="lead text-body-secondary" style="text-align: justify">
-                        Осьминоги уникальным образом умеют приспосабливаться к изменениям окружающей среды. Не только умеют менять окрас и форму, но и перепрограммируют мозг, метаболизм и проводимость нервных волокон. И это не все их таланты.
-                    </p>
-                    <p class="text-body-secondary" style="text-align: justify">
-                        Как сообщила в интервью RT руководитель биологической службы научно-популярного центра «Москвариум» Ирина Мейнцер, у этих существ хорошо развита кратковременная и долговременная память, за счет этого они накапливают полезный опыт.
-                    </p>
-                    <p class="text-body-secondary" style="text-align: justify">
-                        Они большую часть жизни остаются в одиночестве, в контакт с представительницами своего вида вступают лишь в конце жизни, в период размножения. А вот для совместной охоты могут и «договориться» с другими хищниками.
-                    </p>
-                    <p class="text-body-secondary" style="text-align: justify">
-                        Недавно выяснено, что эти уникумы способны перепрограммировать мозг для адаптации к изменениям температуры. Делают они это путем редактуры своей РНК.
-                    </p>
-                    <p class="text-body-secondary" style="text-align: justify">
-                        Осьминоги способны решать непростые когнитивные задачи, например, находить выход из запутанных лабиринтов. Могут менять форму и окрас тела.
-                    </p>
-                    <p class="text-body-secondary" style="text-align: justify">
-                        Их мозг распределён по всему телу в формате большой сети нейронов. Даже каждое щупальце — это маленький мозг, и при отрыве одного из них оно некоторое время само движется и реагирует на среду.
-                    </p>
-                    <p class="text-body-secondary" style="text-align: justify">
-                        Они своего рода инопланетяне, резюмируют ученые. У людей нервы обволакивает миелиновая оболочка. Если она разрушается, то и нейроны тоже поражаются, развиваются тяжелые патологии мозга.
-                    </p>
-                    <p class="text-body-secondary" style="text-align: justify">
-                        У осьминогов подобной оболочки нет. А вся нервная система выстроена иначе, кардинально отличаясь от других типов взаимодействий, присущих иным земным существам.
-                    </p>
+                    <form class="px-5 mx-auto col-sm-8">
+                        <img class="mb-4" src="img/soroka.svg" alt="" width="72" height="57">
+                        <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
+
+                        <div class="form-floating mb-3">
+                          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                          <label for="floatingInput">Email address</label>
+                        </div>
+
+                        <div class="form-floating">
+                          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                          <label for="floatingPassword">Password</label>
+                        </div>
+
+                        <div class="form-check text-start my-3">
+                          <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            Запомнить меня
+                          </label>
+                        </div>
+                        <button class="btn btn-primary w-100 py-2" type="submit">Войти</button>
+                        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
+                      </form>
                 </div>
             </div>
         </div>
@@ -167,10 +161,8 @@
             </ul>
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                 <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Главная</a></li>
-                <li class="nav-item"><a href="categoryNews" class="nav-link px-2 text-body-secondary">Новости</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary disabled">Предложить</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary disabled">Контакты</a></li>
-                <li class="nav-item"><a href="about" class="nav-link px-2 text-body-secondary">О нас</a></li>
+                <li class="nav-item"><a href="/categoryNews" class="nav-link px-2 text-body-secondary">Новости</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link px-2 text-body-secondary">О нас</a></li>
             </ul>
             <p class="text-center text-body-secondary">&copy; 2023 Company, Inc</p>
         </footer>

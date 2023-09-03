@@ -83,19 +83,19 @@
     </style>
 
 </head>
+
 <body>
     <nav class="py-2  bg-body-tertiary border-bottom">
         <div class="container d-flex flex-wrap">
             <ul class="nav me-auto">
                 <li><a href="/" class="nav-link px-2">Главная</a></li>
-                <li><a href="categoryNews" class="nav-link px-2">Новости</a></li>
-                <li><a href="#" class="nav-link px-2 disabled">Предложить</a></li>
-                <li><a href="about" class="nav-link px-2">О нас</a></li>
+                <li><a href="/categoryNews" class="nav-link px-2">Новости</a></li>
+                <li><a href="/about" class="nav-link px-2">О нас</a></li>
                 <li><a href="#" class="nav-link px-2 disabled">admin</a></li>
             </ul>
             <ul class="nav">
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2 disabled">Login</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2 disabled">Sign up</a></li>
+                <li class="nav-item"><a href="/login" class="nav-link link-body-emphasis px-2">Login</a></li>
+                <li class="nav-item"><a href="/checkin" class="nav-link link-body-emphasis px-2">Sign up</a></li>
             </ul>
         </div>
     </nav>
@@ -202,10 +202,8 @@
             </ul>
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                 <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Главная</a></li>
-                <li class="nav-item"><a href="categoryNews" class="nav-link px-2 text-body-secondary">Новости</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary disabled">Предложить</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary disabled">Контакты</a></li>
-                <li class="nav-item"><a href="about" class="nav-link px-2 text-body-secondary">О нас</a></li>
+                <li class="nav-item"><a href="/categoryNews" class="nav-link px-2 text-body-secondary">Новости</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link px-2 text-body-secondary">О нас</a></li>
             </ul>
             <p class="text-center text-body-secondary">&copy; 2023 Company, Inc</p>
         </footer>
