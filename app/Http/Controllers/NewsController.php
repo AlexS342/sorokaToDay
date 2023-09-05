@@ -10,12 +10,12 @@ class NewsController extends Controller
 
     public function index()
     {
-        return \view('news.index', ['news' => $this->getNews()]);
+        return \view('news.index', ['newsList' => $this->getNews()]);
     }
 
     public function show(int $id)
     {
-        return \view('news.item', ['itemNews' => $this->getNews($id)]);
+        return \view('news.show', ['newsList' => $this->getNews()]);
     }
 }
 
