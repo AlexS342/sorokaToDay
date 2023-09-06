@@ -6,6 +6,6 @@ class CheckinController
 {
     public function index()
     {
-        return \view('checkin');
+        return \view('news/checkin');
     }
 }

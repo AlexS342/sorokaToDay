@@ -6,6 +6,6 @@ class AboutController
 {
     public function index()
     {
-        return \view('about');
+        return \view('news.about');
     }
 }
