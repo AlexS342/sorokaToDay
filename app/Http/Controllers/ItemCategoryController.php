@@ -18,7 +18,7 @@ class ItemCategoryController
                 $itemCategory[$key] = $news;
             }
         }
-
-        return \view('itemCategoryNews', ['categories' => $this->getCategory(), 'news' => $itemCategory]);
+//        dd($itemCategory);
+        return \view('news.category', ['news' => $itemCategory]);
     }
 }

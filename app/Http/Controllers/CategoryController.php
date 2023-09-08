@@ -8,6 +8,6 @@ class CategoryController
 
     public function index()
     {
-        return \view('categoryNews', ['categories' => $this->getCategory(), 'news' => $this->getNews()]);
+        return \view('news.groups', ['categories' => $this->getCategory()]);
     }
 }

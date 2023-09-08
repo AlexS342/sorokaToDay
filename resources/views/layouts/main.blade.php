@@ -95,20 +95,21 @@
     <div class="container d-flex flex-wrap">
         <ul class="nav me-auto">
             <li><a href="/" class="nav-link px-2">Главная</a></li>
-            <li><a href="/categoryNews" class="nav-link px-2">Новости</a></li>
-            <li><a href="/about" class="nav-link px-2">О нас</a></li>
-            <li><a href="#" class="nav-link px-2 disabled">admin</a></li>
+            <li><a href="/news" class="nav-link px-2">Новости</a></li>
+            <li><a href="/news/groups" class="nav-link px-2">Категории</a></li>
+            <li><a href="/news/about" class="nav-link px-2">О нас</a></li>
+            <li><a href="/admin" class="nav-link px-2 {{--disabled--}}">admin</a></li>
         </ul>
         <ul class="nav">
-            <li class="nav-item"><a href="/login" class="nav-link link-body-emphasis px-2">Login</a></li>
-            <li class="nav-item"><a href="/checkin" class="nav-link link-body-emphasis px-2">Sign up</a></li>
+            <li class="nav-item"><a href="/news/login" class="nav-link link-body-emphasis px-2">Login</a></li>
+            <li class="nav-item"><a href="/news/checkin" class="nav-link link-body-emphasis px-2">Sign up</a></li>
         </ul>
     </div>
 </nav>
 <header class="py-3 mb-4 border-bottom">
     <div class="container d-flex flex-wrap justify-content-center">
         <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
-            <div style="width: 60px; height: 40px; background: no-repeat; background-image: url(img/soroka.svg); background-size: contain;">
+            <div style="width: 60px; height: 40px; background: no-repeat; background-image: url(../../img/soroka.svg); background-size: contain;">
             </div>
             <span class="fs-1">Soroka ToDay</span>
         </a>
@@ -125,12 +126,14 @@
     @yield('content')
 </main>
 
+<div class="b-example-divider"></div>
+
 <div class="container">
     <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item">
                 <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
-                    <div style="width: 30px; height: 20px; background: no-repeat; background-image: url(img/soroka.svg); background-size: contain;">
+                    <div style="width: 30px; height: 20px; background: no-repeat; background-image: url(../../img/soroka.svg); background-size: contain;">
                     </div>
                     <span class="fs-6">Soroka ToDay</span>
                 </a>
@@ -138,8 +141,9 @@
         </ul>
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Главная</a></li>
-            <li class="nav-item"><a href="/categoryNews" class="nav-link px-2 text-body-secondary">Новости</a></li>
-            <li class="nav-item"><a href="/about" class="nav-link px-2 text-body-secondary">О нас</a></li>
+            <li class="nav-item"><a href="/news" class="nav-link px-2 text-body-secondary">Новости</a></li>
+            <li class="nav-item"><a href="/news/groups" class="nav-link px-2 text-body-secondary">Категории</a></li>
+            <li class="nav-item"><a href="/news/about" class="nav-link px-2 text-body-secondary">О нас</a></li>
         </ul>
         <p class="text-center text-body-secondary">&copy; 2023 Company, Inc</p>
     </footer>
