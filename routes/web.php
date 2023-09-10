@@ -37,10 +37,7 @@ Route::get('/news/groups', [CategoryController::class, 'index'])->name('news.gro
 Route::get('/news/{id}/category', [ItemCategoryController::class, 'index'])->name('news.category');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
-    //http://soroka/admin
     Route::get('/', AdminController::class)->name('index');
-    //http://soroka/admin/news
     Route::resource('news', AdminNewsController::class);
-    //http://soroka/admin/categories
     Route::resource('categories', AdminCategoryController::class);
 });

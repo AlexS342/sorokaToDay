@@ -9,25 +9,25 @@
 
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{route('admin.index')}}">
+                            <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.index')) active @endif" aria-current="page" href="{{route('admin.index')}}">
                                 <svg class="bi"><use xlink:href="#house-fill"/></svg>
                                 Главная
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="{{route('admin.categories.index')}}">
+                            <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.categories.index')) active @endif" href="{{route('admin.categories.index')}}">
                                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                                 Категории
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="{{route('admin.news.index')}}">
+                            <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.news.index')) active @endif" href="{{route('admin.news.index')}}">
                                 <svg class="bi"><use xlink:href="#cart"/></svg>
                                 Новости
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#">
+                            <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('#')) active @endif" href="#">
                                 <svg class="bi"><use xlink:href="#people"/></svg>
                                 Пользователи
                             </a>

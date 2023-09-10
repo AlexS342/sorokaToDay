@@ -26,7 +26,10 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
-        //
+//        dd($request->all());
+//        $request->flash();
+//        return redirect()->route('admin.news.create');
+        return response()->json($request->all());
     }
 
     public function show(string $id)

@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+{{--@dump(old())--}}
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Добавить новость</h1>
@@ -11,22 +12,37 @@
 
     <div class="album py-5 px-4 bg-body-tertiary">
 
-        <form class="p-4 p-md-5 border mx-5 rounded-3 bg-body-tertiary">
+        <form class="p-4 p-md-5 border mx-5 rounded-3 bg-body-tertiary" method="POST" action="{{route('admin.news.store')}}">
+            @csrf
             <div class="container">
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Заголовок для новости</label>
+                    <label for="title" class="form-label">Заголовок для новости</label>
                     <p class="fw-lighter">Максимальная длина заголовка 250 символов</p>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Важный гость приехал ...">
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Важный гость приехал ..." value="{{old('title')}}">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Краткое описание</label>
+                    <label for="author" class="form-label">Автор новостти</label>
+                    <p class="fw-lighter">Укажите автора новости</p>
+                    <input type="text" class="form-control" name="author" id="author" placeholder="Васницов А.В." value="{{old('author')}}">
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Статус</label>
+                    <p class="fw-lighter">Выберите статус новости</p>
+                    <select class="form-control" name="status" id="status">
+                        <option @if(old('status') == 'draft') selected @endif>draft</option>
+                        <option @if(old('status') == 'action') selected @endif>action</option>
+                        <option @if(old('status') == 'blocked') selected @endif>blocked</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="miniDescription" class="form-label">Краткое описание</label>
                     <p class="fw-lighter">Рекомендуем не более 70 слов</p>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                    <textarea class="form-control" name="miniDescription" id="miniDescription" rows="2" >{{old('miniDescription')}}</textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea2" class="form-label">Текстовая составляющая новости</label>
-                    <p class="fw-lighter">Недопустимо использовать внешние ссылки и синтаксис языков програмирования</p>
-                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="5"></textarea>
+                    <label for="description" class="form-label">Текстовая составляющая новости</label>
+                    <p class="fw-lighter">Введите полний текст новости</p>
+                    <textarea class="form-control" name="description" id="description" rows="5">{{old('description')}}</textarea>
                 </div>
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Прикрепите фотографии для новости</label>
