@@ -28,8 +28,8 @@ class NewsController extends Controller
     {
 //        dd($request->all());
 //        $request->flash();
-//        return redirect()->route('admin.news.create');
-        return response()->json($request->all());
+        return redirect()->route('admin.news.create');
+//        return response()->json($request->all());
     }
 
     public function show(string $id)

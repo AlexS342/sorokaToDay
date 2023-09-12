@@ -14,6 +14,7 @@ trait NewsTrait
             $category[$i] = [
                 'id' => $i,
                 'category' => fake()->company(),
+                'description' => fake()->text(100),
             ];
         }
         return $category;
