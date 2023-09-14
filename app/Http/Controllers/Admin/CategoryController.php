@@ -5,16 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NewsTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
     use NewsTrait;
     public function index()
     {
-//        return '<h1>Проверка связи Категории админский!</h1>';
-        $news = $this->getNews();
-        $categories = $this->getCategory();
-        return \view('admin.categories.index', ['categoriesList' => $categories]);
+        if(Storage::disk('local')->exists('categories.json')){
+            $arrayCategories = Storage::json('categories.json');
+            return \view('admin.categories.index', ['categoriesList' => $arrayCategories]);
+        }
+        return \view('admin.categories.index', ['categoriesList' => []]);
     }
 
     public function create()
@@ -24,8 +26,19 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        if(!Storage::disk('local')->exists('categories.json')){
+            $arrayCategories['1'] = $request->all();
+            $arrayCategories[1]['id']=1;
+        }else{
+            $arrayCategories = Storage::json('categories.json');
+            $i = count($arrayCategories);
+            $arrayCategories[$i+1] = $request->all();
+            $arrayCategories[$i+1]['id']=$i+1;
+        }
+
+        Storage::disk('local')->put('categories.json', json_encode($arrayCategories, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        $request->flash();
         return redirect()->route('admin.categories.create');
-//        return response()->json($request->all());
     }
 
     public function show(string $id)

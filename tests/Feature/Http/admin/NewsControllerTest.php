@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class NewsController extends TestCase
+class NewsControllerTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -21,15 +21,13 @@ class NewsController extends TestCase
 
     public function testNewsStoreSuccess()
     {
-        $postData = [
-            'title' => 'title',
-            'author' => 'Alex',
-            'status' => 'draft',
-            'miniDescription' => 'asdfvasdfv',
-            'description' => 'adfbadbasdfvbad'
-        ];
-        $response = $this->post(route('admin.news.index'), $postData);
+        $response = $this->post(route('admin.news.store'));
+        $response->assertStatus(302);
+    }
+
+    public function testNewsCreateSuccess()
+    {
+        $response = $this->get(route('admin.news.create'));
         $response->assertStatus(200);
-        $response->assertJson($postData);
     }
 }

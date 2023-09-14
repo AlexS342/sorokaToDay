@@ -16,7 +16,7 @@
                                 <small class="mt-1 mb-1" style="font-size: 0.85rem; color: rgb(131, 131, 131);">{{$news['created_at']}}</small>
                             </div>
                             <p class="mt-1 mb-1" style="font-size: 1rem; font-weight: 700;">{{$news['title']}}</p>
-                            <p class="mt-1 mb-1" style="font-size: 0.85rem; font-style: italic;">{{$news['mimi_description']}}</p>
+                            <p class="mt-1 mb-1" style="font-size: 0.85rem; font-style: italic;">{{$news['miniDescription']}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="{{route('news.show', ['id' => $news['id']])}}" type="button" class="btn btn-outline-primary btn-sm px-4">Читать</a>
                             </div>
