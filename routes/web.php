@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\AddNewsController;
+//use App\Http\Controllers\AddNewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\HomeController;

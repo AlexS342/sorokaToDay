@@ -3,54 +3,54 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\NewsTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use function Laravel\Prompts\alert;
 
 class NewsController extends Controller
 {
-    use NewsTrait;
 
     public function index():View
     {
-
-        $news = $this->getNews();
-        return \view('admin.news.index', ['newsList' => $news]);
-
+        $news = DB::table('news')->get();
+        if(count($news) !== 0) {
+            return \view('admin.news.index', ['newsList' => $news]);
+        }else{
+            return \view('admin.news.index', ['newsList' => []]);
+        }
     }
 
     public function create()
     {
-        if(Storage::disk('local')->exists('categories.json')){
-            $arrayCategories = Storage::json('categories.json');
-            return \view('admin.news.create', ['categoriesList' => $arrayCategories]);
+        $categories = DB::table('categories')->get();
+        if(count($categories) !== 0){
+            return \view('admin.news.create', ['categoriesList' => $categories]);
+        }else{
+            return \view('admin.news.create', ['categoriesList' => []]);
         }
-        return \view('admin.news.create', ['categoriesList' => []]);
+
     }
 
     public function store(Request $request)
     {
-        if(!Storage::disk('local')->exists('news.json')){
-            $arrayNews['1'] = $request->all();
-            $arrayNews[1]['id']=1;
-            $arrayNews[1]['created_at'] = now()->format('d-m-Y H:i');
-            $i = 1;
-        }else{
-            $arrayNews = Storage::json('news.json');
-            $i = count($arrayNews);
-            $arrayNews[$i+1] = $request->all();
-            $arrayNews[$i+1]['id']=$i+1;
-            $arrayNews[$i+1]['created_at'] = now()->format('d-m-Y H:i');
-        }
-        $i = count($arrayNews);
-
-        Storage::disk('local')->put('news.json', json_encode($arrayNews, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
         $request->flash();
-        return redirect()->route('news.show', ['id' => $i]);
-//        news.show
-//        return redirect()->route('admin.news.create');
+
+        $path = [];
+        if ($request->hasFile('image')){
+            $path = Storage::putFile('public/img/photo', $request->file('image'));
+        }
+
+        $news = $request->all();
+        unset($news['_token']);
+        unset($news['image']);
+        $news['img'] = $path;
+        $news['created_at'] = now();
+//        dd($news);
+        $id = DB::table('news')->insertGetId($news);
+
+        return redirect()->route('news.show', ['id' => $id]);
     }
 
     public function show(string $id)

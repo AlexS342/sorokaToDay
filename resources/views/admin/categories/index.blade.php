@@ -21,11 +21,11 @@
             </thead>
             <tbody>
 
-            @forelse($categoriesList as $categories)
+            @forelse($categoriesList as $category)
                 <tr>
-                    <td>{{$categories['id']}}</td>
-                    <td>{{$categories['category']}}</td>
-                    <td>{{$categories['description']}}</td>
+                    <td>{{$category->id}}</td>
+                    <td>{{$category->category}}</td>
+                    <td>{{$category->description}}</td>
                     <td><a href="#">Ред.</a> | <a href="#" style="color:red">Уд.</a></td>
                 </tr>
             @empty

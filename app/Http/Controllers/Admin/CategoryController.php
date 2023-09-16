@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\NewsTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
-    use NewsTrait;
     public function index()
     {
-        if(Storage::disk('local')->exists('categories.json')){
-            $arrayCategories = Storage::json('categories.json');
-            return \view('admin.categories.index', ['categoriesList' => $arrayCategories]);
+        $categories = DB::table('categories')->get();
+        if(count($categories) !== 0){
+            return \view('admin.categories.index', ['categoriesList' => $categories]);
         }
         return \view('admin.categories.index', ['categoriesList' => []]);
     }
@@ -26,19 +25,21 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        if(!Storage::disk('local')->exists('categories.json')){
-            $arrayCategories['1'] = $request->all();
-            $arrayCategories[1]['id']=1;
-        }else{
-            $arrayCategories = Storage::json('categories.json');
-            $i = count($arrayCategories);
-            $arrayCategories[$i+1] = $request->all();
-            $arrayCategories[$i+1]['id']=$i+1;
+        $request->flash();
+
+        $path = [];
+        if ($request->hasFile('image')){
+            $path = Storage::putFile('public/img/icon', $request->file('image'));
         }
 
-        Storage::disk('local')->put('categories.json', json_encode($arrayCategories, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
-        $request->flash();
-        return redirect()->route('admin.categories.create');
+        $category = $request->all();
+        unset($category['_token']);
+        unset($category['image']);
+        $category['img'] = $path;
+        $category['created_at'] = now();
+        $id = DB::table('categories')->insertGetId($category);
+
+        return redirect()->route('news.category', ['id' => $id]);
     }
 
     public function show(string $id)

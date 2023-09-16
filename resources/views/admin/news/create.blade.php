@@ -1,5 +1,4 @@
 @extends('layouts.admin')
-{{--@dump(old())--}}
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Добавить новость</h1>
@@ -12,10 +11,10 @@
 
     <div class="album py-5 px-4 bg-body-tertiary">
 
-        <form class="p-4 p-md-5 border mx-5 rounded-3 bg-body-tertiary" method="POST" action="{{route('admin.news.store')}}">
+        <form method="POST" enctype="multipart/form-data" action="{{route('admin.news.store')}}" class="p-4 p-md-5 border mx-5 rounded-3 bg-body-tertiary" >
             @csrf
             <div class="container">
-                @if (empty($categoriesList))
+                @if (count($categoriesList) === 0)
                     <div class="mb-3">
                         <p class="fw-lighter">Сначала добавте категорию в разделе "Добавить категорию"</p>
                     </div>
@@ -25,7 +24,7 @@
                         <p class="fw-lighter">Выберите статус новости</p>
                         <select class="form-control" name="id_category" id="id_category">
                             @foreach($categoriesList as $category)
-                                <option value="{{$category['id']}}">{{$category['category']}}</option>
+                                <option value="{{$category->id}}">{{$category->category}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -43,9 +42,9 @@
                         <label for="status" class="form-label">Статус</label>
                         <p class="fw-lighter">Выберите статус новости</p>
                         <select class="form-control" name="status" id="status">
-                            <option @if(old('status') == 'draft') selected @endif>draft</option>
-                            <option @if(old('status') == 'action') selected @endif>action</option>
-                            <option @if(old('status') == 'blocked') selected @endif>blocked</option>
+                            <option value="draft" @if(old('status') == 'draft') selected @endif>draft</option>
+                            <option value="active" @if(old('status') == 'action') selected @endif>active</option>
+                            <option value="blocked" @if(old('status') == 'blocked') selected @endif>blocked</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -59,9 +58,9 @@
                         <textarea class="form-control" name="description" id="description" rows="5">{{old('description')}}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="formFileMultiple" class="form-label">Прикрепите фотографии для новости</label>
-                        <p class="fw-lighter">Допускаетмя прикрепление нескольких фотограций. Формат JPEG, TIFF, PND</p>
-                        <input class="form-control" type="file" id="formFileMultiple" multiple>
+                        <label for="image" class="form-label">Прикрепите фотографии для новости</label>
+                        <p class="fw-lighter">Здесь можно прикрепить одну фоторгафию для новости. Формат JPEG, TIFF, PND</p>
+                        <input class="form-control" type="file" name="image" id="image" multiple>
                     </div>
 
                     <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить новость</button>
