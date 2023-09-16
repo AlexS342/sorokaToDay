@@ -10,7 +10,7 @@
             <div class="col-lg-6">
                 <h3 class="display-6 fw-bold lh-1 text-body-emphasis mb-3">{{$el['title']}}</h3>
                 <a href="{{ route('news.category', ['id' => $el['id_category']]) }}" class="alert-link">{{$el['category']}}</a>
-                <p class="lead">{{$el['mimi_description']}}</p>
+                <p class="lead">{{$el['miniDescription']}}</p>
                 <p class="lead">{{$el['author']}} ({{$el['created_at']}})</p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     <a href="{{route('news.show', ['id' => $el['id']])}}" type="button" class="btn btn-outline-primary btn-lg px-4">Читать</a>

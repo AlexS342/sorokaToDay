@@ -3,7 +3,7 @@
 
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
-            <h2 class="pb-2 border-bottom">{{current($news)['category']}}</h2>
+            <h2 class="pb-2 border-bottom">{{$category}}</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                 @forelse($news as $el)
@@ -17,7 +17,7 @@
                                 <small class="mt-1 mb-1" style="font-size: 0.85rem; color: rgb(131, 131, 131);">{{$el['created_at']}}</small>
                             </div>
                             <p class="mt-1 mb-1" style="font-size: 1rem; font-weight: 700;">{{$el['title']}}</p>
-                            <p class="mt-1 mb-1" style="font-size: 0.85rem; font-style: italic;">{{$el['mimi_description']}}</p>
+                            <p class="mt-1 mb-1" style="font-size: 0.85rem; font-style: italic;">{{$el['miniDescription']}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="{{route('news.show', ['id' => $el['id']])}}" type="button" class="btn btn-outline-primary btn-sm px-4">Читать</a>
                             </div>
@@ -25,7 +25,13 @@
                     </div>
                 </div>
                 @empty
-                    <p class="mt-1 mb-1" style="font-size: 0.85rem; font-style: italic;">В выбраной категории новостей нет</p>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <p class="mt-1 mb-1" style="font-size: 1rem; font-weight: 700;">В данной категории пока нет новостей</p>
+                            </div>
+                        </div>
+                    </div>
                 @endforelse
 
             </div>

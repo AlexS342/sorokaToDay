@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная - Soroka To Day</title>
+    <title>Главная - Soroka ToDay</title>
 
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" crossorigin="anonymous">
     <link href="{{asset('assets/css/bootstrap-icon.css')}}" rel="stylesheet" crossorigin="anonymous">
