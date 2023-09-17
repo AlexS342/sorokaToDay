@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,31 +11,24 @@ class NewsController extends Controller
 {
     public function index()
     {
-        if (!DB::table('categories')->exists() || !DB::table('news')->exists()) {
-            return \view('news/home', ['news' => []]);
-        } else {
-            $fullNews = DB::table('news')
-                ->join('categories', 'news.id_category', '=', 'categories.id')
-                ->select('news.*', 'categories.category')
-                ->orderBy('news.created_at')
-                ->get();
-
-            return \view('news.index', ['newsList' => $fullNews]);
+        $news = News::paginate(12);
+        dump($news);
+        $categories = Category::all();
+        $categoriesMap = [];
+        foreach ($categories as $category)
+        {
+            $categoriesMap[$category->id] = $category->category;
         }
+        return \view('news.index', ['newsList' => $news, 'categories' => $categoriesMap]);
     }
 
-    public function show(int $id)
+    public function show(News $news)
     {
-        if (!DB::table('categories')->exists() || !DB::table('news')->exists()) {
-            return \view('news/home', ['news' => []]);
-        } else {
-            $itemNews = DB::table('news')
-                ->join('categories', 'news.id_category', '=', 'categories.id')
-                ->select('news.*', 'categories.category')
-                ->where('news.id', '=', $id)
-                ->get();
-            return \view('news.show', ['oneNews' => $itemNews->all()[0]]);
-        }
+
+//        $news = News::find($news);
+//        dd($news);
+        $category = Category::find($news->id_category);
+        return \view('news.show') ->with(['news' => $news, 'category' => $category]);
     }
 }
 

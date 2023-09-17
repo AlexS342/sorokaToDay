@@ -6,7 +6,7 @@
     <title>Главная - Soroka ToDay</title>
 
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" crossorigin="anonymous">
-    <link href="{{asset('assets/css/bootstrap-icon.css')}}" rel="stylesheet" crossorigin="anonymous">
+{{--    <link href="{{asset('assets/css/bootstrap-icon.css')}}" rel="stylesheet" crossorigin="anonymous">--}}
 
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
 
