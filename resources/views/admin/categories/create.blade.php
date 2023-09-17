@@ -10,7 +10,7 @@
     </div>
 
     <div class="album py-5 px-4 bg-body-tertiary">
-
+        @include('inc.message')
         <form class="p-4 p-md-5 border mx-5 rounded-3 bg-body-tertiary" method="POST" enctype="multipart/form-data" action="{{route('admin.categories.store')}}">
             @csrf
             <div class="container">
@@ -40,5 +40,5 @@
 
 @endsection
 
-{{--Всплывающее сообщение при открытии страницы--}}
-{{--@push('js') <script>alert('Привет великий Администратор')</script>@endpush--}}
+{{--Всплывающее сообщение при открытии страницы. @stack находится resources/views/layouts/admin.blade.php--}}
+{{--@push('alert') <script>alert('Привет великий Администратор! Ты можешь управлять категориями')</script>@endpush--}}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -11,11 +12,9 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = DB::table('categories')->get();
-        if(count($categories) !== 0){
+        $categories = Category::query()->orderBy('id')->paginate(6);
+
             return \view('admin.categories.index', ['categoriesList' => $categories]);
-        }
-        return \view('admin.categories.index', ['categoriesList' => []]);
     }
 
     public function create()
@@ -27,19 +26,15 @@ class CategoryController extends Controller
     {
         $request->flash();
 
-        $path = [];
-        if ($request->hasFile('image')){
-            $path = Storage::putFile('public/img/icon', $request->file('image'));
+        $data = $request->only(['category', 'description', 'img',]);
+
+        $category = new Category($data);
+
+        if($category->save()){
+            return redirect()->route('admin.categories.index')->with('success', 'Категория успешно добавлена');
         }
+        return back()->with('error', 'Неполучилось добавить категорию');
 
-        $category = $request->all();
-        unset($category['_token']);
-        unset($category['image']);
-        $category['img'] = $path;
-        $category['created_at'] = now();
-        $id = DB::table('categories')->insertGetId($category);
-
-        return redirect()->route('news.category', ['id' => $id]);
     }
 
     public function show(string $id)
@@ -47,18 +42,27 @@ class CategoryController extends Controller
         //
     }
 
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return \view('admin.categories.edit', ['category' => $category]);
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $data = $request->only(['category', 'description', 'img']);
+        $category = $category->fill($data);
+        if($category->save()){
+            return redirect()->route('admin.categories.index')->with('success', 'Категория успешно отредактирована');
+        }
+        return back()->with('error', 'Неполучилось отредактировать категорию');
     }
 
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        //delete()
+        if($category->delete()){
+            return redirect()->route('admin.categories.index')->with('success', 'Категория успешно удалена');
+        }
+        return back()->with('error', 'Неполучилось удалить категорию');
     }
 }
