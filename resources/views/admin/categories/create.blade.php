@@ -11,7 +11,7 @@
 
     <div class="album py-5 px-4 bg-body-tertiary">
 
-        <form class="p-4 p-md-5 border mx-5 rounded-3 bg-body-tertiary" method="POST" action="{{route('admin.categories.store')}}">
+        <form class="p-4 p-md-5 border mx-5 rounded-3 bg-body-tertiary" method="POST" enctype="multipart/form-data" action="{{route('admin.categories.store')}}">
             @csrf
             <div class="container">
                 <div class="mb-3">
@@ -23,6 +23,11 @@
                     <label for="description" class="form-label">Характеристика новостей в категории</label>
                     <p class="fw-lighter">Введите описание категории</p>
                     <textarea class="form-control" name="description" id="description" rows="5">{{old('description')}}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Прикрепите фотографии для новости</label>
+                    <p class="fw-lighter">Здесь можно прикрепить одну фоторгафию для новости. Формат JPEG, TIFF, PND</p>
+                    <input class="form-control" type="file" name="image" id="image" multiple>
                 </div>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить категорию</button>

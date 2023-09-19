@@ -2,42 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ItemCategoryController
 {
-    use NewsTrait;
-
     public function index(int $id)
     {
-        if (!Storage::disk('local')->exists('categories.json') || !Storage::disk('local')->exists('news.json')) {
+        if (!DB::table('categories')->exists() || !DB::table('news')->exists()) {
             return \view('news.category', ['news' => []]);
         } else {
+            $categoryNews = DB::table('news')
+                ->join('categories', 'news.id_category', '=', 'categories.id')
+                ->select('news.*', 'categories.category')
+                ->where('news.id_category', '=', $id)
+                ->get();
 
-            $arrayNews = Storage::json('news.json');
-            $arrayCategories = Storage::json('categories.json');
-
-            $sortNews = [];
-            foreach ($arrayNews as $key => $itemNews) {
-                if ($itemNews['id_category'] === $id) {
-                    $sortNews[$key] = $itemNews;
-                }
+            if(count($categoryNews->all()) !== 0){
+                return \view('news.category', ['categoryNews' => $categoryNews, 'category' => $categoryNews->all()[0]->category], );
+            }else{
+                $categories = DB::table('categories')->find($id);
+                return \view('news.category', ['categoryNews' => [], 'category' => $categories->category]);
             }
-            $arrTotal = [];
-            foreach ($sortNews as $key => $itemNews){
-                foreach ($arrayCategories as $itemCategory){
-                    if($itemCategory['id'] == $itemNews['id_category']){
-                        $itemNews['category'] = $itemCategory['category'];
-                        $arrTotal[$key] = $itemNews;
-                    }
-                }
-            }
-        }
-
-        if(empty($arrTotal)){
-            return \view('news.category', ['news' => [], 'category' => $arrayCategories[$id]['category']]);
-        }else{
-            return \view('news.category', ['news' => $arrTotal, 'category' => $arrayCategories[$id]['category']], );
         }
     }
 }
