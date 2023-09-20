@@ -89,23 +89,21 @@
 
 <body>
 
-<x-admin.header></x-admin.header>
+    <x-admin.header></x-admin.header>
 
-<div class="container-fluid">
-    <div class="row">
-
-        <x-admin.sidabar></x-admin.sidabar>
-
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            @yield('content')
-        </main>
+    <div class="container-fluid">
+        <div class="row">
+            <x-admin.sidabar></x-admin.sidabar>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                @yield('content')
+            </main>
+        </div>
     </div>
-</div>
 
-<script src="{{asset('/assets/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('/assets/js/chart.umd.min.js')}}" crossorigin="anonymous"></script>
-<script src="{{asset('/assets/js/dashboard.js')}}"></script>
-{{--@stack('alert')--}} {{--@push находится resources/views/admin/categories/create.blade.php--}}
-@stack('js')
+    <script src="{{asset('/assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('/assets/js/chart.umd.min.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('/assets/js/dashboard.js')}}"></script>
+    {{--@stack('alert')--}} {{--@push находится resources/views/admin/categories/create.blade.php--}}
+    @stack('js')
 </body>
 </html>

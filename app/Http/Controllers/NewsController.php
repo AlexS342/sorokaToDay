@@ -10,10 +10,6 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::query()->paginate(12);
-        //Добавить в шаблов
-        //<div class="pt-5">
-        //    {{$newsList->links()}}
-        //</div>
         $categories = Category::all();
         return \view('news.index', ['newsList' => $news, 'categories' => $categories]);
     }

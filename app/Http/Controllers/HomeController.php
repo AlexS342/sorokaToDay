@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\News;
-use Illuminate\Support\Facades\DB;
 
 class HomeController
 {

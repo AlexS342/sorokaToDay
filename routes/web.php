@@ -1,63 +1,31 @@
 <?php
 
-use App\Http\Controllers\AboutController;
-//use App\Http\Controllers\AddNewsController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CheckinController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ItemCategoryController;
-//use App\Http\Controllers\ItemNewsController;
-use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CheckinController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ItemCategoryController;
 
 use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', [HomeController::class, 'index'])->name('news.home');
 Route::get('/news', [NewsController::class, 'index'])->name('news');
-//Route::get('/news/{id}/show', [NewsController::class, 'show'])->where('id', '\d+')->name('news.show');
 Route::get('/news/{news}/show', [NewsController::class, 'show'])->name('news.show');
 Route::get('/news/about', [AboutController::class, 'index'])->name('news.about');
 Route::get('/news/login', [LoginController::class, 'index'])->name('news.login');
 Route::get('/news/checkin', [CheckinController::class, 'index'])->name('news.checkin');
 Route::get('/news/groups', [CategoryController::class, 'index'])->name('news.groups');
-//Route::get('/news/{id}/category', [ItemCategoryController::class, 'index'])->name('news.category');
 Route::get('/news/{news}/category', [ItemCategoryController::class, 'index'])->name('news.category');
 Route::get('/news/{category}/categoryId', [ItemCategoryController::class, 'indexById'])->name('news.categoryId');
 
-
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::get('/', AdminController::class)->name('index');
-
     Route::resource('news', AdminNewsController::class);
-//    Route::get('news', [AdminNewsController::class, 'index'])->name('news.index');
-//    Route::post('news', [AdminNewsController::class, 'store'])->name('news.store');
-//    Route::get('news/create', [AdminNewsController::class, 'create'])->name('news.create');
-//    Route::get('news/{news}', [AdminNewsController::class, 'show'])->name('news.show');
-//    Route::put('news/{news}', [AdminNewsController::class, 'update'])->name('news.update');
-//    Route::delete('news/{news}', [AdminNewsController::class, 'destroy'])->name('news.destroy');
-//    Route::get('news/{news}/edit', [AdminNewsController::class, 'edit'])->name('news.edit');
-
     Route::resource('categories', AdminCategoryController::class);
-//    Route::get('categories', [AdminCategoryController::class, 'index'])->name('categories.index');
-//    Route::get('categories', [AdminCategoryController::class, 'store'])->name('categories.store');
-//    Route::get('categories/create', [AdminCategoryController::class, 'create'])->name('categories.create');
-//    Route::get('categories/{category}', [AdminCategoryController::class, 'show'])->name('categories.show');
-//    Route::put('categories/{category}', [AdminCategoryController::class, 'update'])->name('categories.update');
-//    Route::delete('categories/{category}', [AdminCategoryController::class, 'destroy'])->name('categories.destroy');
-//    Route::get('categories/{category}/edit', [AdminCategoryController::class, 'edit'])->name('categories.edit');
 });

@@ -5,16 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::query()->orderBy('id')->paginate(6);
+        $categories = Category::query()->orderBy('id')->paginate(10);
 
-            return \view('admin.categories.index', ['categoriesList' => $categories]);
+        return \view('admin.categories.index', ['categoriesList' => $categories]);
     }
 
     public function create()
@@ -51,6 +49,7 @@ class CategoryController extends Controller
     {
         $data = $request->only(['category', 'description', 'img']);
         $category = $category->fill($data);
+
         if($category->save()){
             return redirect()->route('admin.categories.index')->with('success', 'Категория успешно отредактирована');
         }
@@ -59,7 +58,6 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        //delete()
         if($category->delete()){
             return redirect()->route('admin.categories.index')->with('success', 'Категория успешно удалена');
         }

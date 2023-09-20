@@ -11,7 +11,6 @@
             @csrf
             @method('PUT')
             <div class="container">
-
                 <div class="mb-3">
                     <label for="id_category" class="form-label">Категория новости</label>
                     <p class="fw-lighter">Выберите статус новости</p>
@@ -35,7 +34,6 @@
                         <label for="status" class="form-label">Статус</label>
                         <p class="fw-lighter">Выберите статус новости</p>
                         <select class="form-control" name="status" id="status">
-{{--                            <option value="{{\App\Enums\News\Status::DRAFT->value}}" @if($news->status == \App\Enums\News\Status::DRAFT->value) selected @endif>--}}
                             <option value="{{\App\Enums\News\Status::DRAFT->value}}"
                                     @selected(old('status')??$news->status == \App\Enums\News\Status::DRAFT->value)>
                                 {{\App\Enums\News\Status::DRAFT->value}}
@@ -74,10 +72,5 @@
             </div>
         </form>
     </div>
-
-
-
 @endsection
 
-{{--Всплывающее сообщение при открытии страницы--}}
-{{--@push('js') <script>alert('Привет великий Администратор')</script>@endpush--}}

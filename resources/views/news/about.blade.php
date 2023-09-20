@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <div class="px-4 py-2 my-2 text-center" style="background: no-repeat; background-image: url(../../img/soroka2.svg); background-size: contain;">
+    <div class="px-4 py-2 my-2 text-center" style="background: no-repeat; background-image: url(/img/soroka2.svg); background-size: contain;">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
@@ -18,7 +18,7 @@
     <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row align-items-center g-5 py-5">
             <div class="col-10 col-sm-8 col-lg-6">
-                <img src="../../img/bootstrap-themes.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                <img src="/img/bootstrap-themes.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
             </div>
             <div class="col-lg-6">
                 <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Предложить свою новость</h1>

@@ -6,10 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-use function Laravel\Prompts\alert;
 
 class NewsController extends Controller
 {
@@ -21,13 +18,13 @@ class NewsController extends Controller
             ->sort()
             ->with('category')
             ->orderByDesc('id')
-            ->paginate(12);
+            ->paginate(10);
 
         $category = Category::query()->get();
 
         return \view('admin.news.index', [
             'newsList' => $news,
-            'categories' => $category
+            'categories' => $category,
         ]);
     }
 
@@ -52,9 +49,9 @@ class NewsController extends Controller
         return back()->with('error', 'Неполучилось добавить новость');
     }
 
-    public function show(News $news)
+    public function show(string $id)
     {
-        return 'Ты ушёл не натот маршрут';
+        //
     }
 
     public function edit(News $news)
@@ -75,7 +72,6 @@ class NewsController extends Controller
 
     public function destroy(News $news)
     {
-//        return 'Ты на правильный маршрут';
         if($news->delete()){
             return redirect()->route('admin.news.index')->with('success', 'Новость успешно удалена');
         }

@@ -15,7 +15,6 @@
             </p>
             <small class="mt-1 mb-1" style="font-size: 0.85rem; color: rgb(131, 131, 131);">{{$news->author}}</small>
             <small class="mt-1 mb-1" style="font-size: 0.85rem; color: rgb(131, 131, 131);">{{$news->created_at}}</small>
-
         </div>
     </div>
 </div>
