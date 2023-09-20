@@ -2,27 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Support\Facades\DB;
 
 class ItemCategoryController
 {
-    public function index(int $id)
+    public function index(News $news)
     {
-        if (!DB::table('categories')->exists() || !DB::table('news')->exists()) {
-            return \view('news.category', ['news' => []]);
-        } else {
-            $categoryNews = DB::table('news')
-                ->join('categories', 'news.id_category', '=', 'categories.id')
-                ->select('news.*', 'categories.category')
-                ->where('news.id_category', '=', $id)
-                ->get();
+        $categoryNews = News::query()->select('*')->where( 'id_category','=', $news['id_category'])->paginate(2);
+        $category = Category::query()->find($news['id_category']);
 
-            if(count($categoryNews->all()) !== 0){
-                return \view('news.category', ['categoryNews' => $categoryNews, 'category' => $categoryNews->all()[0]->category], );
-            }else{
-                $categories = DB::table('categories')->find($id);
-                return \view('news.category', ['categoryNews' => [], 'category' => $categories->category]);
-            }
-        }
+        return \view('news.category', ['categoryNews' => $categoryNews, 'category' => $category, 'categoryName' => $category['category']] );
     }
+
+    public function indexById(Category $category)
+    {
+        $news = News::query()->select('*')->where( 'id_category','=', $category['id'])->paginate(2);
+
+        return \view('news.category', ['categoryNews' => $news, 'categoryName' => $category['category']] );
+    }
+
 }
