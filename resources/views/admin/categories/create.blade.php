@@ -10,27 +10,32 @@
     </div>
 
     <div class="album py-5 px-4 bg-body-tertiary">
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <x-alert :message="$error" type="danger"></x-alert>
+            @endforeach
+        @endif
         @include('inc.message')
-        <form class="p-4 p-md-5 border mx-5 rounded-3 bg-body-tertiary" method="POST" enctype="multipart/form-data" action="{{route('admin.categories.store')}}">
+        <form method="POST" enctype="multipart/form-data" action="{{route('admin.categories.store')}}" class="p-4 p-md-5 border mx-5 rounded-3 bg-body-tertiary">
             @csrf
             <div class="container">
                 <div class="mb-3">
                     <label for="category" class="form-label">Название категории</label>
                     <p class="fw-lighter">Максимальная длина категории 200 символов</p>
-                    <input type="text" class="form-control" name="category" id="category" placeholder="Политика" value="{{old('category')}}">
+                    <input type="text" class="form-control @error('category')is-invalid @enderror" name="category" id="category" placeholder="Политика" value="{{old('category')}}">
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Характеристика новостей в категории</label>
                     <p class="fw-lighter">Введите описание категории</p>
-                    <textarea class="form-control" name="description" id="description" rows="5">{{old('description')}}</textarea>
+                    <textarea class="form-control @error('description')is-invalid @enderror" name="description" id="description" rows="5">{{old('description')}}</textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="image" class="form-label">Прикрепите фотографии для новости</label>
+                    <label for="image" class="form-label">Прикрепите иконку для категории</label>
                     <p class="fw-lighter">Здесь можно прикрепить одну фоторгафию для новости. Формат JPEG, TIFF, PND</p>
-                    <input class="form-control" type="file" name="image" id="image" multiple>
+                    <input class="form-control @error('image')is-invalid @enderror" type="file" name="image" id="image" multiple>
                 </div>
 
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить категорию</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить</button>
 
             </div>
         </form>

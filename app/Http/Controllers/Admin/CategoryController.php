@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\News\Status;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Categories\Create;
+use App\Http\Requests\Admin\Categories\Edit;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
 
 class CategoryController extends Controller
 {
@@ -20,7 +24,7 @@ class CategoryController extends Controller
         return \view('admin.categories.create');
     }
 
-    public function store(Request $request)
+    public function store(Create $request)
     {
         $request->flash();
 
@@ -45,8 +49,14 @@ class CategoryController extends Controller
         return \view('admin.categories.edit', ['category' => $category]);
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Edit $request, Category $category)
     {
+        $request->validate([
+            'category' => ['required', 'string', 'min:3', 'max:100'],
+            'description' => ['required', 'string', 'min:20', 'max:250'],
+            'image' => ['image'],
+        ]);
+
         $data = $request->only(['category', 'description', 'img']);
         $category = $category->fill($data);
 
