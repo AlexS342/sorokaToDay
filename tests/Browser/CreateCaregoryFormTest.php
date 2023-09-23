@@ -86,7 +86,7 @@ class CreateCaregoryFormTest extends DuskTestCase
                 ->type('category', 'Популярное')
                 ->type('description', 'Количество символов в полКоличество символов в пол')
                 ->press('Добавить')
-                ->assertSee('Количество символов в поле Прикрепите иконку для категории не может превышать 250.');
+                ->assertSee('Категория успешно добавлена');
         });
     }
 
