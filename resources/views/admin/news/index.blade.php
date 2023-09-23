@@ -36,7 +36,7 @@
             <tbody>
 
             @forelse($newsList as $news)
-            <tr>
+            <tr id="{{$news->id}}">
                 <td>{{$news->id}}</td>
                 <td>{{$news->category->category}}</td>
                 <td>{{$news->title}}</td>
@@ -90,5 +90,6 @@
                 location.href = '?s=' + this.value;
             });
         });
+
     </script>
 @endpush

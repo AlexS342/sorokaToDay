@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+
+    db:
+        image: postgres:15.4
+        restart: always
+        environment:
+            POSTGRES_DB: soroka
+            POSTGRES_PASSWORD: 25121984
+        ports:
+            - '5101:5432'
+        volumes:
+            - ./data:/var/lib/postgresql/data
