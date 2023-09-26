@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin\Categories;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Edit extends FormRequest
+class EditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,16 @@ class Edit extends FormRequest
         return [
             'category' => ['required', 'string', 'min:3', 'max:100'],
             'description' => ['required', 'string', 'min:20', 'max:250'],
-            'image' => ['nullable', 'image'],
+            'img' => ['nullable', 'image', 'mimes:svg,png', 'max:100'],
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'category' => 'Название категории',
+            'description' => 'Прикрепите иконку для категории',
+            'img' => 'иконка',
         ];
     }
 }

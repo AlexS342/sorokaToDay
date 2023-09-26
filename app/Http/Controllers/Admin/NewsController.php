@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\News\Status;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\News\Create;
-use App\Http\Requests\Admin\News\Edit;
+use App\Http\Requests\Admin\News\CreateRequest;
+use App\Http\Requests\Admin\News\EditRequest;
 use App\Models\Category;
 use App\Models\News;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\Rules\Enum;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class NewsController extends Controller
@@ -40,11 +37,16 @@ class NewsController extends Controller
         return \view('admin.news.create', ['categoriesList' => $categories]);
     }
 
-    public function store(Create $request)
+    public function store(CreateRequest $request)
     {
         $request->flash();
 
         $data = $request->only(['id_category', 'title', 'author', 'status', 'miniDescription', 'description', 'img']);
+
+        if($request->file('img')){
+            $path = Storage::putFile('/public/img/photo', $request->file('img'));
+            $data['img'] = Storage::url($path);
+        }
 
         $news = new News($data);
 
@@ -65,12 +67,37 @@ class NewsController extends Controller
         return \view('admin.news.edit', ['categoriesList' => $categories, 'news' => $news]);
     }
 
-    public function update(Edit $request, News $news)
+    public function update(EditRequest $request, News $news)
     {
+        $oldFile = $news->img;
         $data = $request->only(['id_category', 'title', 'author', 'status', 'miniDescription', 'description', 'img']);
+
+        $newFileFlag = false;
+        if($request->file('img')){
+            $newFileFlag = true;
+            $request->validate([
+                'img' => ['nullable', 'image', 'mimes:jpeg, jpg, tiff', 'min:100', 'max:1500']
+            ]);
+            $path = Storage::putFile('public/img/photo', $request->file('img'));
+            $data['img'] = Storage::url($path);
+        }
+
         $news = $news->fill($data);
+
         if($news->save()){
-            return redirect()->route('admin.news.index')->with('success', 'Новость успешно отредактирована');
+            if($newFileFlag && isset($oldFile)){
+                //Не могу фактически удалить старый файл.
+                //При прикреплении нового файла заход в этот if осуществляется.
+                //В переменной $oldFile коректное имя старого файла.
+                //Если сделать dd(Storage::delete($oldFile);) то выводит true
+                //Старый файл остается в хранилище storage
+                //В DB путь до файла заменяется, с этим проблем нет
+                if(Storage::delete($oldFile)){
+                    return redirect()->route('admin.news.index')->with('success', 'Новость успешно отредактирована. Старая фотография ' . $oldFile . ' удалена из хранилища');
+                }else{
+                    return redirect()->route('admin.news.index')->with('warning', 'Новость успешно отредактирована. Неполучилось удалить стару фотографию с именем' . $oldFile);
+                }
+            }
         }
         return back()->with('error', 'Неполучилось отредактировать новость');
     }
@@ -81,12 +108,5 @@ class NewsController extends Controller
             return redirect()->route('admin.news.index')->with('success', 'Новость успешно удалена');
         }
         return back()->with('error', 'Неполучилось удалить новость');
-//        try{
-//            $news->delete();
-//            return response()->json('ok');
-//        } catch (\Exception $e){
-//            Log::error($e->getMessage(), $e->getTrace());
-//            return response()->json('error', 400);
-//        }
     }
 }

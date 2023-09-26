@@ -7,7 +7,7 @@ use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-class Edit extends FormRequest
+class EditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,7 +32,6 @@ class Edit extends FormRequest
             'status' => ['required', new Enum(Status::class)],
             'miniDescription' => ['required', 'string', 'min:150', 'max:300'],
             'description' => ['required', 'string', 'min:250', 'max:2000'],
-            'image' => ['nullable', 'image'],
         ];
     }
 
@@ -45,7 +44,7 @@ class Edit extends FormRequest
             'status' => 'статус',
             'miniDescription' => 'краткое описание',
             'description' => 'текстовая состовляющая новости',
-            'image' => 'фотография',
+            'img' => 'фотография',
         ];
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
 
     <div class="album py-5 bg-body-tertiary">

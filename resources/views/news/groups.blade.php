@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
     <div class="container px-4 pb-2" id="icon-grid">
         <h2 class="pb-2 pt-2 border-bottom">Категории</h2>

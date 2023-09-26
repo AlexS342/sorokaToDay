@@ -30,9 +30,9 @@
                     <textarea class="form-control @error('description')is-invalid @enderror" name="description" id="description" rows="5">{{old('description')}}</textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="image" class="form-label">Прикрепите иконку для категории</label>
+                    <label for="img" class="form-label">Прикрепите иконку для категории</label>
                     <p class="fw-lighter">Здесь можно прикрепить одну фоторгафию для новости. Формат JPEG, TIFF, PND</p>
-                    <input class="form-control @error('image')is-invalid @enderror" type="file" name="image" id="image" multiple>
+                    <input class="form-control @error('img')is-invalid @enderror" type="file" name="img" id="img" multiple>
                 </div>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить</button>

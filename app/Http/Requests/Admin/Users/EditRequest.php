@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Categories;
+namespace App\Http\Requests\Admin\Users;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Create extends FormRequest
+class EditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +22,20 @@ class Create extends FormRequest
     public function rules(): array
     {
         return [
-            'category' => ['required', 'string', 'min:3', 'max:100'],
-            'description' => ['required', 'string', 'min:20', 'max:250'],
-            'image' => ['nullable', 'image'],
+            'name' => ['required', 'string', 'min:3', 'max:25'],
+            'email' => ['required', 'email'],
+            'password1' => ['nullable', 'string', 'min:8', 'max:20'],
+            'is_admin' => ['required', 'int'],
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'category' => 'Название категории',
-            'description' => 'Прикрепите иконку для категории',
-            'image' => 'иконка',
+            'name' => 'Имя',
+            'email' => 'E-mail',
+            'password1' => 'Введите пароль',
+            'is_admin' => 'Права Администратора'
         ];
     }
 }

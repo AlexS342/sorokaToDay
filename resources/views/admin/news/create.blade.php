@@ -101,10 +101,10 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="image" class="form-label @error('image')is-invalid @enderror">Прикрепите фотографии для новости</label>
+                        <label for="img" class="form-label @error('img')is-invalid @enderror">Прикрепите фотографии для новости</label>
                         <p class="fw-lighter">Здесь можно прикрепить одну фоторгафию для новости. Формат JPEG, TIFF, PND</p>
-                        <input class="form-control" type="file" name="image" id="image" multiple>
-                        @error('image')
+                        <input class="form-control" type="file" name="img" id="img" multiple>
+                        @error('img')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                             {{$message}}
                         </div>
