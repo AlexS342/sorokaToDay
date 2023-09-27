@@ -8,7 +8,7 @@
                 @forelse($newsList as $news)
                     <div class="col">
                         <div class="card shadow-sm">
-                            <div style="width: 100%; height: 225px; background: url('{{$news->img}}') no-repeat; background-size: cover;"></div>
+                            <div style="width: 100%; height: 225px; background: url('{{asset($news->img)}}') no-repeat; background-size: cover;"></div>
                             <div class="card-body">
                                 <a class="mt-1 mb-1" style="font-size: 0.75rem; text-decoration: none;" href="{{route('news.category', [$news])}}">
                                     {{$categories[$news->id_category-1]->category}}

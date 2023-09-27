@@ -6,7 +6,7 @@
             <a href="{{route('news.category', [$news])}}" class="alert-link">
                 <p class="mt-1 mb-1" style="font-size: 0.85rem; color: rgb(131, 131, 131);">{{$category->category}}</p>
             </a>
-            <img class="img-fluid" src="/{{$news->img}}" alt="осминог">
+            <img class="img-fluid" src="{{asset($news->img)}}" alt="осминог">
             <h1 class="display-4 fw-bold lh-1 text-body-emphasis mt-5 mb-5">
                 {{$news->title}}
             </h1>
