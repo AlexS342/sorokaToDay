@@ -41,7 +41,7 @@ class ParserService implements Parser
 
             foreach ($readyData as $item)
             {
-                if(!DB::table('news')->select('id')->where('title', '=', $item['title'])->exists()){
+                if(!DB::table('news')->where('title', '=', $item['title'])->exists()){
                     $model = new News($item);
                     $model->save();
                 }
@@ -56,6 +56,7 @@ class ParserService implements Parser
         foreach ($data['news'] as $key => $news)
         {
             $idCategory = $this->getIdCategories(trim($news['category'], " \n\r\t\v\x00"));
+
             $readyData[$key]['id_category'] = $idCategory;
 
             $readyData[$key]['title'] = trim($news['title'], " \n\r\t\v\x00");

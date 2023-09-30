@@ -3,55 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Events\DefineLoginEvent;
-use App\Models\User;
 use App\Services\Interfaces\Social;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialProviderController extends Controller
 {
-    public function vkRedirect()
+    public function redirect($driver)
     {
-        return Socialite::driver('vkontakte')->redirect();
+        return Socialite::driver($driver)->redirect();
     }
 
-    public function vkCallback()
+    public function callback(String $driver, Social $social)
     {
         try {
-            $socialUser = Socialite::driver('vkontakte')->user();
-        }
-        catch (\Exception $e)
-        {
-            return redirect(route('login'));
-        }
-
-        $user = User::query()->where('email', '=', $socialUser->getEmail())->first();
-        if(!$user){
-            $user = User::create([
-                'email' => $socialUser->getEmail(),
-                'name' => $socialUser->getName(),
-                'avatar' => $socialUser->getAvatar(),
-                'password' => Hash::make('secret'),
-            ]);
-        }
-        $user->avatar = $socialUser->getAvatar();
-        $user->save();
-        Auth::login($user, true);
-        event(new DefineLoginEvent($user));
-
-        return redirect(route('home'));
-    }
-
-    public function ghRedirect()
-    {
-        return Socialite::driver('github')->redirect();
-    }
-
-    public function ghCallback(Social $social)
-    {
-        try {
-            $socialUser = Socialite::driver('github')->user();
+            $socialUser = Socialite::driver($driver)->user();
         }
         catch (\Exception $e)
         {
