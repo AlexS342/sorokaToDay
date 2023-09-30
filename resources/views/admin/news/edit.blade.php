@@ -96,13 +96,13 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="image" class="form-label">Изменить фотографию для новости</label>
+                    <label for="img" class="form-label">Изменить фотографию для новости</label>
                     <div>
-                        <img src="/{{old('img')??$news->img}}" width="200">
+                        <img src="{{old('img')??$news->img}}" width="200">
                     </div>
-                    <p class="fw-lighter">Cсылка на фотографию: / {{old('img')??$news->img}}</p>
-                    <input class="form-control @error('image')is-invalid @enderror" type="file" name="image" id="image" multiple>
-                    @error('image')
+                    <p class="fw-lighter">Cсылка на фотографию: {{old('img')??$news->img}}</p>
+                    <input class="form-control @error('img')is-invalid @enderror" type="file" name="img" id="image" multiple>
+                    @error('img')
                     <div id="validationServer03Feedback" class="invalid-feedback">
                         {{$message}}
                     </div>

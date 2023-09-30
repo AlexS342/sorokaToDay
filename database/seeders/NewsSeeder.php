@@ -285,7 +285,7 @@ class NewsSeeder extends Seeder
         {
             $st = Status::getEnums()[array_rand(Status::getEnums())];
             $data['status'] = $st;
-            $data['img'] = 'storage/img/photo/' . $this->photos[array_rand($this->photos)];
+            $data['img'] = '/storage/img/photo/' . $this->photos[array_rand($this->photos)];
             $data['created_at'] = now();
             $news[] = $data;
             $quantityJpg++;
@@ -301,7 +301,7 @@ class NewsSeeder extends Seeder
                 'status' => $st,
                 'miniDescription' => fake()->text(100),
                 'description' => fake()->text(500),
-                'img' =>  'storage/img/photo/' . $this->photos[array_rand($this->photos)],
+                'img' =>  '/storage/img/photo/' . $this->photos[array_rand($this->photos)],
                 'created_at' => now(),
             ];
             $quantityJpg++;

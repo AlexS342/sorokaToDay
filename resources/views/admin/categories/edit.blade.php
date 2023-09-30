@@ -27,12 +27,12 @@
                     <textarea class="form-control @error('description')is-invalid @enderror" name="description" id="description" rows="5">{{old('description')??$category->description}}</textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="image" class="form-label">Прикрепите иконку для категории</label>
+                    <label for="img" class="form-label">Прикрепите иконку для категории</label>
                     <div>
-                        <img src="/{{old('img')??$category->img}}">
+                        <img src="{{old('img')??$category->img}}">
                     </div>
-                    <p class="fw-lighter">Ссылка на иконку: / {{old('img')??$category->img}}">}}</p>
-                    <input class="form-control @error('description')is-invalid @enderror" type="file" name="image" id="image" multiple>
+                    <p class="fw-lighter">Ссылка на иконку: {{old('img')??$category->img}}</p>
+                    <input class="form-control @error('img')is-invalid @enderror" type="file" name="img" id="img" multiple>
                 </div>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Изменить категорию</button>
