@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\ParserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SocialProviderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,16 +31,40 @@ Route::get('/news/{category}/categoryId', [ItemCategoryController::class, 'index
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(function (){
     Route::get('/', AdminController::class)->name('index');
+    Route::get('/parser', ParserController::class)->name('parser');
     Route::resource('news', AdminNewsController::class);
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('users', AdminUserController::class);
     Route::put('users/changeRights/{user}', [AdminUserController::class, 'changeRights'])->name('users.changeRights');
 });
 
+Route::group(['middleware' => 'guest'], function (){
+    Route::get('/vkontakte/redirect', [SocialProviderController::class, 'vkRedirect'])->name('social-providers.vkRedirect');
+    Route::get('/vkontakte/callback', [SocialProviderController::class, 'vkCallback'])->name('social-providers.vkCallback');
+});
+
+Route::group(['middleware' => 'guest'], function (){
+    Route::get('/github/redirect', [SocialProviderController::class, 'ghRedirect'])->name('social-providers.ghRedirect');
+    Route::get('/github/callback', [SocialProviderController::class, 'ghCallback'])->name('social-providers.ghCallback');
+});
+
+//Route::group(['middleware' => 'guest'], function (){
+//    Route::get('/telegram/redirect', [SocialProviderController::class, 'redirect'])->name('social-providers.redirect');
+//    Route::get('/telegram/callback', [SocialProviderController::class, 'callback'])->name('social-providers.callback');
+//});
+
+//Route::group(['middleware' => 'guest'], function (){
+//    Route::get('/google/redirect', [SocialProviderController::class, 'redirect'])->name('social-providers.redirect');
+//    Route::get('/google/callback', [SocialProviderController::class, 'callback'])->name('social-providers.callback');
+//});
+
+//Route::group(['middleware' => 'guest'], function (){
+//    Route::get('/yandex/redirect', [SocialProviderController::class, 'redirect'])->name('social-providers.redirect');
+//    Route::get('/yandex/callback', [SocialProviderController::class, 'callback'])->name('social-providers.callback');
+//});
+
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-//  soroka/login
-//  soroka/register

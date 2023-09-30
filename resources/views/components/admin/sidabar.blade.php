@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('#')) active @endif" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs(route('admin.parser'))) active @endif" href="{{route('admin.parser')}}">
                         @if(request()->routeIs('#'))
                             <svg class="bi"><use xlink:href="#parser-full"/></svg>
                         @else

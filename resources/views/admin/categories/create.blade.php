@@ -40,10 +40,4 @@
             </div>
         </form>
     </div>
-
-
-
 @endsection
-
-{{--Всплывающее сообщение при открытии страницы. @stack находится resources/views/layouts/admin.blade.php--}}
-{{--@push('alert') <script>alert('Привет великий Администратор! Ты можешь управлять категориями')</script>@endpush--}}

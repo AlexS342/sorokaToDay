@@ -26,6 +26,7 @@ class EditRequest extends FormRequest
             'email' => ['required', 'email'],
             'password1' => ['nullable', 'string', 'min:8', 'max:20'],
             'is_admin' => ['required', 'int'],
+            'avatar' => ['nullable', 'string'],
         ];
     }
 

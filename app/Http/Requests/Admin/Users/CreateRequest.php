@@ -2,10 +2,7 @@
 
 namespace App\Http\Requests\Admin\Users;
 
-use App\Enums\News\Status;
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
 class CreateRequest extends FormRequest
 {
@@ -29,6 +26,7 @@ class CreateRequest extends FormRequest
             'email' => ['required', 'email'],
             'password1' => ['required', 'string', 'min:8', 'max:20'],
             'is_admin' => ['required', 'int'],
+            'avatar' => ['nullable', 'string']
         ];
     }
 
@@ -38,7 +36,8 @@ class CreateRequest extends FormRequest
             'name' => 'Имя',
             'email' => 'E-mail',
             'password1' => 'Введите пароль',
-            'is_admin' => 'Права Администратора'
+            'is_admin' => 'Права Администратора',
+            'avatar' => 'Аватар',
         ];
     }
 }

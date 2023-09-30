@@ -86,12 +86,6 @@ class NewsController extends Controller
 
         if($news->save()){
             if($newFileFlag && isset($oldFile)){
-                //Не могу фактически удалить старый файл.
-                //При прикреплении нового файла заход в этот if осуществляется.
-                //В переменной $oldFile коректное имя старого файла.
-                //Если сделать dd(Storage::delete($oldFile);) то выводит true
-                //Старый файл остается в хранилище storage
-                //В DB путь до файла заменяется, с этим проблем нет
                 if(Storage::delete($oldFile)){
                     return redirect()->route('admin.news.index')->with('success', 'Новость успешно отредактирована. Старая фотография ' . $oldFile . ' удалена из хранилища');
                 }else{

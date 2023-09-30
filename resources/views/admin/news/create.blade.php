@@ -62,7 +62,6 @@
                         @enderror
                     </div>
 
-
                     <div class="mb-3">
                         <label for="status" class="form-label">Статус</label>
                         <p class="fw-lighter">Выберите статус новости</p>
@@ -116,8 +115,5 @@
             </div>
         </form>
     </div>
-
-
-
 @endsection
 
