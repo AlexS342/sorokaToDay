@@ -47,8 +47,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('#')) active @endif" href="#">
-                        @if(request()->routeIs('#'))
+                    <a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('admin.resources.index')) active @endif" href="{{route('admin.resources.index')}}">
+                        @if(request()->routeIs('admin.resources.index'))
                             <svg class="bi"><use xlink:href="#resources-full"/></svg>
                         @else
                             <svg class="bi"><use xlink:href="#resources"/></svg>
@@ -82,15 +82,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 {{ route('logout') }}"
+                    <a class="nav-link d-flex align-items-center gap-2 {{ route('logout') }}" href="#"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                         <svg class="bi"><use xlink:href="#door-closed"/></svg>
                         {{ __('Logout') }}
-                    </a>
+
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
+                    </a>
                 </li>
             </ul>
         </div>

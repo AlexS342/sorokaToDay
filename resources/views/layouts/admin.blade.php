@@ -5,11 +5,14 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard Template · Bootstrap v5.3</title>
+    <title>Soroka ToDay * Админка</title>
 
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link href="{{asset('assets/css/bootstrap-icons.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/dashboard.css')}}" rel="stylesheet">
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
+
 
     <style>
         .bd-placeholder-img {

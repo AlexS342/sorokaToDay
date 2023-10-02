@@ -7,11 +7,24 @@ use App\Http\Requests\Admin\News\CreateRequest;
 use App\Http\Requests\Admin\News\EditRequest;
 use App\Models\Category;
 use App\Models\News;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class NewsController extends Controller
 {
+    public function storeImage(Request $request)
+    {
+        Log::info('Загрузить файл:');
+        if ($request->hasFile('upload')) {
+
+            $fileName = $request->file('upload')->hashName();
+            $url = asset(Storage::url(Storage::putFileAs('/public/img/photo', $request->file('upload'), $fileName)));
+
+            return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
+        }
+    }
 
     public function index():View
     {
@@ -92,6 +105,7 @@ class NewsController extends Controller
                     return redirect()->route('admin.news.index')->with('warning', 'Новость успешно отредактирована. Неполучилось удалить стару фотографию с именем' . $oldFile);
                 }
             }
+            return redirect()->route('admin.news.index')->with('success', 'Новость успешно отредактирована.');
         }
         return back()->with('error', 'Неполучилось отредактировать новость');
     }
