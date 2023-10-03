@@ -13,7 +13,7 @@
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ?? 'admin@admin.ru' }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email')}}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -26,7 +26,7 @@
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
                             <div class="col-md-6">
-                                <input value="admin" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -64,9 +64,6 @@
                             <div>
                                 <a href="{{route('social-providers.redirect', ['driver' => 'vkontakte'])}}"><img src="{{asset('storage/img/icon/vkontakte.svg')}}" style="margin: 0 12px;" width="24" alt="VK"></a>
                                 <a href="{{route('social-providers.redirect', ['driver' => 'github'])}}"><img src="{{asset('storage/img/icon/github.svg')}}" style="margin: 0 12px;" width="24" alt="GH"></a>
-{{--                                <a href="{{route('social-providers.redirect', ['driver' => 'telegram'])}}"><img src="{{asset('storage/img/icon/telegram.svg')}}" style="margin: 0 12px;" width="24" alt="TG"></a>--}}
-{{--                                <a href="{{route('social-providers.redirect', ['driver' => 'google'])}}"><img src="{{asset('storage/img/icon/google.svg')}}" style="margin: 0 12px;" width="24" alt="G"></a>--}}
-{{--                                <a href="{{route('social-providers.redirect', ['driver' => 'yandex'])}}"><img src="{{asset('storage/img/icon/yandex.svg')}}" style="margin: 0 12px;" width="24" alt="YA"></a>--}}
                             </div>
                         </div>
                     </form>
