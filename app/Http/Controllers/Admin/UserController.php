@@ -8,8 +8,7 @@ use App\Http\Requests\Admin\Users\EditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use function Laravel\Prompts\password;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::query()->where('id', '!=', Auth::user()->id)->orderBy('id')->paginate();
+        $users = User::query()->where('id', '!=', Auth::user()->id)->orderBy('id')->paginate(20);
         return \view('admin.users.index', ['usersList' => $users]);
     }
 
@@ -36,8 +35,6 @@ class UserController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $request->flash();
-
         if($request->password1 === $request->password2){
             $data = $request->only(['name', 'email', 'is_admin']);
             $data['password'] = $request->password1;
@@ -76,7 +73,7 @@ class UserController extends Controller
         $data = $request->only(['name', 'email', 'is_admin']);
 
         if($request->password1 !== null && $request->password1 === $request->password2){
-            $data['password'] = $request->password1;
+            $data['password'] = Hash::make($request->password1);
         }
 
         $user = $user->fill($data);
@@ -100,7 +97,6 @@ class UserController extends Controller
 
     public function changeRights(Request $request, User $user)
     {
-//        dd(Auth::user()->id);
         if(Auth::user()->id === $user->id){
             return back()->with('error', 'Нельзя изменить свой статус');
         }

@@ -67,8 +67,6 @@
                     <td colspan="5">Записей нет</td>
                 </tr>
             @endforelse
-
-
             </tbody>
         </table>
         <div class="pt-5 pb-5">
@@ -90,6 +88,5 @@
                 location.href = '?s=' + this.value;
             });
         });
-
     </script>
 @endpush

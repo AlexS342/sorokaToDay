@@ -81,7 +81,7 @@
                     <input type="password" name="password2" id="password2" class="form-control" aria-describedby="passwordHelpBlock">
                 </div>
 
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить</button>
             </div>
         </form>
     </div>

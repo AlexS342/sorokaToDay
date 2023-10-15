@@ -15,10 +15,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            CategorySeeder::class,
-            NewsSeeder::class,
+//            CategorySeeder::class,
+//            NewsSeeder::class,
         ]);
-         User::factory(2)->create();
+
+         User::factory(5)->create();
 
          User::factory()->create([
              'name' => 'Admin',
