@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\ResourceController as AdminResourceController;
 
 Route::get('/news', [NewsController::class, 'index'])->name('news');
 Route::get('/news/{news}/show', [NewsController::class, 'show'])->name('news.show');
@@ -33,7 +34,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(
     Route::resource('news', AdminNewsController::class);
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('users', AdminUserController::class);
+    Route::resource('resources', AdminResourceController::class);
     Route::put('users/changeRights/{user}', [AdminUserController::class, 'changeRights'])->name('users.changeRights');
+    Route::post('image-upload', [AdminNewsController::class, 'storeImage'])->name('image.upload');
 });
 
 Route::group(['middleware' => 'guest'], function (){
