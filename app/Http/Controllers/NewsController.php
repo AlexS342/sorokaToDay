@@ -9,7 +9,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::query()->paginate(12);
+        $news = News::query()->latest()->paginate(24);
         $categories = Category::all();
         return \view('news.index', ['newsList' => $news, 'categories' => $categories]);
     }
