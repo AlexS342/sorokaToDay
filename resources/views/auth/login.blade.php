@@ -62,11 +62,11 @@
                         <div style="display: flex; flex-direction: column; align-items: center; margin: 12px">
                             <h6>Вход через социальные сети</h6>
                             <div>
-                                <a href="{{route('social-providers.redirect', ['driver' => 'vkontakte'])}}"><img src="{{asset('storage/img/icon/vkontakte.svg')}}" style="margin: 0 12px;" width="24" alt="VK"></a>
-                                <a href="{{route('social-providers.redirect', ['driver' => 'github'])}}"><img src="{{asset('storage/img/icon/github.svg')}}" style="margin: 0 12px;" width="24" alt="GH"></a>
-{{--                                <a href="{{route('social-providers.redirect', ['driver' => 'telegram'])}}"><img src="{{asset('storage/img/icon/telegram.svg')}}" style="margin: 0 12px;" width="24" alt="TG"></a>--}}
-{{--                                <a href="{{route('social-providers.redirect', ['driver' => 'google'])}}"><img src="{{asset('storage/img/icon/google.svg')}}" style="margin: 0 12px;" width="24" alt="G"></a>--}}
-{{--                                <a href="{{route('social-providers.redirect', ['driver' => 'yandex'])}}"><img src="{{asset('storage/img/icon/yandex.svg')}}" style="margin: 0 12px;" width="24" alt="YA"></a>--}}
+                                <a href="{{route('social-providers.redirect', ['driver' => 'vkontakte'])}}"><img src="{{asset('/img/icon/vkontakte.svg')}}" style="margin: 0 12px;" width="24" alt="VK"></a>
+                                <a href="{{route('social-providers.redirect', ['driver' => 'github'])}}"><img src="{{asset('/img/icon/github.svg')}}" style="margin: 0 12px;" width="24" alt="GH"></a>
+{{--                                <a href="{{route('social-providers.redirect', ['driver' => 'telegram'])}}"><img src="{{asset('/img/icon/telegram.svg')}}" style="margin: 0 12px;" width="24" alt="TG"></a>--}}
+{{--                                <a href="{{route('social-providers.redirect', ['driver' => 'google'])}}"><img src="{{asset('/img/icon/google.svg')}}" style="margin: 0 12px;" width="24" alt="G"></a>--}}
+{{--                                <a href="{{route('social-providers.redirect', ['driver' => 'yandex'])}}"><img src="{{asset('/img/icon/yandex.svg')}}" style="margin: 0 12px;" width="24" alt="YA"></a>--}}
                             </div>
                         </div>
                     </form>
