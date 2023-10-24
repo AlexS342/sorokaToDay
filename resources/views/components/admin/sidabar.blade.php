@@ -72,6 +72,12 @@
 
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2" href="{{route('home')}}">
+                        <svg class="bi"><use xlink:href="#house"/></svg>
+                        Сайт (Главная)
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="#">
                         @if(request()->routeIs('#'))
                             <svg class="bi"><use xlink:href="#person-full"/></svg>
