@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class ParserController extends Controller
 {
-    public function __invoke(Request $request, Parser $parserService)
+    public function __invoke(/*Request $request, Parser $parserService*/)
     {
 //        $arrayLinkRss = [
 //            'lentaRSS' => 'https://lenta.ru/rss',
