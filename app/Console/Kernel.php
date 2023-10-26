@@ -14,10 +14,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         /*
-        Необходимо добавить ежеминутный CRON какого вида:
+        Необходимо добавить ежеминутный CRON такого вида:
         * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
         */
-        $schedule->call(new ParserController)->everyTenSeconds();
+        $schedule->call(new ParserController)->everyFiveMinutes();
     }
 
     /**
